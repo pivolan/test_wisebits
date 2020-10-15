@@ -20,6 +20,7 @@ class IndexController extends AbstractController
     const REDIS_TRACK_KEY = "track";
 
     /**
+     * Increment counter for country visit by +1 for every post request
      * @Route("/api/v1/track", methods={"GET","POST"})
      * @param Request $request
      * @param \Redis $redis
@@ -57,8 +58,10 @@ class IndexController extends AbstractController
     }
 
     /**
+     * Get statistic for all countries
      * @Route("/api/v1/track/stat", methods={"GET"})
      * @param \Redis $redis
+     * @param LoggerInterface $logger
      * @return JsonResponse
      */
     public function statistics(\Redis $redis, LoggerInterface $logger): JsonResponse
